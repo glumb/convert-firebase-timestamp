@@ -42,7 +42,7 @@ export function convertTimestamps<T>(firebaseObject: T|T[]): T|T[] {
 			if (value && Array.isArray(value)) {
 				firebaseObject = {
 					...firebaseObject,
-					[key]: value.map(item => isTimestamp(item) ? convertTimestamp(item) : convertTimestamps(item))
+					[key]: value.map(item => (value && isTimestamp(item)) ? convertTimestamp(item) : convertTimestamps(item))
 				};
 				continue;
 			}
